@@ -163,7 +163,7 @@ body {
 
 .menu-feature button:hover {
     background-color: var(--primary);
-    color: white;
+    color: var(--mainWhite);
     transition: all ease 0.15s;
 }
 
@@ -293,6 +293,12 @@ button.add-to-cart:hover {
         margin: auto;
         left: 5%;
         max-height: 85vh;
+    }
+    .search-input{
+        position: fixed;
+        top: 4rem;
+        box-shadow: -2px 2px 40px 10px #cececeab !important;
+        left: 33%;
     }
 
 }
@@ -618,4 +624,26 @@ span.total-price-num {
 
 p.total-price {
     color: var(--mainWhite);
+}
+.searchbox{
+    display: flex;
+    gap: 0.2rem;
+}
+.searchbox:hover .search-input{
+    /* display: block; */
+    width: auto;
+    padding: 0.8rem;
+}
+.searchbox:hover .search-btn{
+    background-color: var(--primary);
+    color: var(--mainWhite);
+}
+.search-input {
+    padding: 0;
+    background-color: var(--mainWhite);
+    border-radius: 8px;
+    box-shadow: -2px 2px 40px 10px #f1f1f1ab;
+    /* display: none; */
+    width: 0px;
+    transition: all linear 0.2s;
 }
