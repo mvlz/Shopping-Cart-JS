@@ -20,12 +20,16 @@ const cartCounter = document.querySelector(".cart-counter");
 const cartContainerDiv = document.querySelector(".cart-container");
 const clearCartBtn = document.querySelector(".clear-cart");
 const favoriteContent = document.querySelector(".favorite-content");
+const searchInput = document.querySelector(".search-input");
 
 
 let cart = [];
 let favorite = [];
 let btnDOM = [];
 
+const filters = {
+    searchItems: "",
+  };
 
 // declare function
 function showModalFunction(a) { //toggling
@@ -102,6 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
     showEmpty(favoriteContent);
     showEmpty(cartContainerDiv);
     // this.setCartValue();
+    searchInput.addEventListener("input", (e) => {
+        filters.searchItems = e.target.value;
+        ui.displayProducts(productsData);
+      });
 });
 
 //--------------------------------------------- Classes --------------------------------------------//
@@ -116,8 +124,19 @@ class Product {
 // display product
 class UI {
     displayProducts(products) {
+
+        const filteredProducts = products.filter((product) => {
+            return (
+                product.title.toLowerCase().includes(filters.searchItems.toLowerCase())
+            );
+          });
+          console.log(filteredProducts);
+
+          productDom.innerHTML = "";
+
         let result = "";
-        products.forEach(item => {
+
+        filteredProducts.forEach(item => {
             result += `
         <div class="product">
             <div class="product-img">
@@ -134,8 +153,7 @@ class UI {
         </div>
             `;
             productDom.innerHTML = result;
-        });
-
+        }); 
     }
     addFavoriteItem(favItem) {
         // const itemTotalPrice = cartItem.price * cartItem.quantity;
