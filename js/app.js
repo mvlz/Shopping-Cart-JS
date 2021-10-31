@@ -109,7 +109,10 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInput.addEventListener("input", (e) => {
         filters.searchItems = e.target.value;
         ui.displayProducts(productsData);
-      });
+        ui.getAddToCartBtns();
+        ui.getfavoriteBtns();
+        ui.getAddInFavBtn();
+    });
 });
 
 //--------------------------------------------- Classes --------------------------------------------//
@@ -312,7 +315,7 @@ class UI {
                 this.setCartValue(cart);
                 Storage.saveCart(cart);
                 event.target.previousElementSibling.innerText = substractedItem.quantity;
-                if (substractedItem.quantity === 1) {
+                if (substractedItem.quantity <= 1) {
                     // this.removeItem(id);
                     // cartContainerDiv.removeChild(subQuantity.parentElement.parentElement);
                     // return;
